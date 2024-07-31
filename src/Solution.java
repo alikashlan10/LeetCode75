@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
-//345.Reverse words of string
+//151.Reverse words of string
 //Medium
 //Time Complexity : O(N)
 //Space Complexity : O(N)
@@ -10,37 +8,13 @@ import java.util.Stack;
 
 public class Solution {
     public String reverseWords(String s) {
+        // Trim the input string and split by one or more spaces
+        List<String> words = Arrays.asList(s.trim().split("\\s+"));
 
+        // Reverse the list of words
+        Collections.reverse(words);
 
-      StringBuilder sb = new StringBuilder();
-      Stack<String> stack = new Stack<>();
-      s = s.trim();
-
-      for (int i = 0; i < s.length(); i++) {
-          if (s.charAt(i) == ' ' && s.charAt(i - 1) != ' '){
-
-              stack.push(sb.toString());
-              sb = new StringBuilder();
-
-          } else if (i+1 == s.length()) {
-              sb.append(s.charAt(i));
-              stack.push(sb.toString());
-              sb = new StringBuilder();
-          }else if(s.charAt(i) == ' '){
-              continue;
-          }
-          else{
-              sb.append(s.charAt(i));
-          }
-      }
-      StringBuilder res = new StringBuilder();
-      while (!stack.isEmpty()) {
-          res.append(stack.pop());
-          res.append(" ");
-      }
-
-        res.deleteCharAt(res.length() - 1);
-
-        return res.toString();
+        // Join the words back into a single string with a space separator
+        return String.join(" ", words);
     }
 }
