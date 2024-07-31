@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//1431.1431. Kids With the Greatest Number of Candies
+//605.CanPlaceFlowers
 //Easy
 //Time Complexity : O(N)
-//Space complexity : O(N)
 
 
 public class Solution {
