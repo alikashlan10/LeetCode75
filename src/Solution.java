@@ -2,36 +2,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-//345.Reverse vowels of a string
-//Easy
+//345.Reverse words of string
+//Medium
 //Time Complexity : O(N)
 //Space Complexity : O(N)
 
 
 public class Solution {
-    public String reverseVowels(String s) {
+    public String reverseWords(String s) {
 
-        Stack<Character> placeHolder = new Stack<Character>();
-        for (int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'i' || s.charAt(i) == 'o' || s.charAt(i) == 'u'
-                    || s.charAt(i)=='A' || s.charAt(i)=='E' || s.charAt(i)=='I' || s.charAt(i)=='O' || s.charAt(i)=='U'){
-                placeHolder.push(s.charAt(i));
-            }
-        }
 
-        //int pointer=0;
-        StringBuilder reversed = new StringBuilder(s);
-        for (int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'i' || s.charAt(i) == 'o' || s.charAt(i) == 'u'
-               || s.charAt(i)=='A' || s.charAt(i)=='E' || s.charAt(i)=='I' || s.charAt(i)=='O' || s.charAt(i)=='U'){
-                if(!placeHolder.isEmpty()){}
-                reversed.setCharAt(i,placeHolder.pop());
-            }
-            else{
-                reversed.setCharAt(i,s.charAt(i));
-            }
-        }
+      StringBuilder sb = new StringBuilder();
+      Stack<String> stack = new Stack<>();
+      s = s.trim();
 
-        return reversed.toString();
+      for (int i = 0; i < s.length(); i++) {
+          if (s.charAt(i) == ' ' && s.charAt(i - 1) != ' '){
+
+              stack.push(sb.toString());
+              sb = new StringBuilder();
+
+          } else if (i+1 == s.length()) {
+              sb.append(s.charAt(i));
+              stack.push(sb.toString());
+              sb = new StringBuilder();
+          }else if(s.charAt(i) == ' '){
+              continue;
+          }
+          else{
+              sb.append(s.charAt(i));
+          }
+      }
+      StringBuilder res = new StringBuilder();
+      while (!stack.isEmpty()) {
+          res.append(stack.pop());
+          res.append(" ");
+      }
+
+        res.deleteCharAt(res.length() - 1);
+
+        return res.toString();
     }
 }
