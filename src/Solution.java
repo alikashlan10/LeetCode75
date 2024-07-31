@@ -8,26 +8,14 @@ import java.util.List;
 
 
 public class Solution {
-    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
 
-        //sort array to get max element
-        int max = -1 ;
-        for(int i=0;i<candies.length;i++)
-        {
-            if(candies[i] > max)
-                max = candies[i];
+        int FlowersCntr =0 ;
+        for(int i=0;i<flowerbed.length;i++) {
+            if(flowerbed[i]==0 && flowerbed[i+1]==0 && flowerbed[i-1]==0 ) {
+                FlowersCntr++;
+            }
         }
-
-        List<Boolean> result = new ArrayList<>();
-        //building result
-        for(int i=0;i<candies.length;i++)
-        {
-            if(candies[i]+extraCandies >= max)
-                result.add(true);
-            else
-                result.add(false);
-        }
-
-        return result;
+        return n==FlowersCntr;
     }
 }
