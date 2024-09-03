@@ -3,8 +3,8 @@
 public class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] nums = {3,1,3,4,3};
-        int ops =solution.maxOperations(nums,6);
+        int[] nums = {1,12,-5,-6,50,3};
+        double ops =solution.findMaxAverage(nums,4);
         System.out.println(ops);
     }
 }
