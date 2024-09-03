@@ -1,37 +1,56 @@
 import java.util.*;
 import java.util.stream.IntStream;
 
-//643. Maximum Average Subarray i
-//easy
+
+//1456. Maximum Number of Vowels in a Substring of Given Length
+//medium
 //Time Complexity : O(N)
 //Space Complexity : O(1)
 
 
 class Solution {
-    public double findMaxAverage(int[] nums, int k) {
-        //determine first window's avg value and sum
-        double sum=0;
-        for(int i=0;i<k;i++)
-            sum += nums[i];
-        double maxAvg = sum/k;
+    public int maxVowels(String s, int k) {
 
-        //in case array only has one possible window
-        if(k==nums.length) return maxAvg;
+        StringBuilder sb = new StringBuilder(s);
+        int max = 0;
+        char[] vowels = {'a', 'e', 'i', 'o', 'u'};
 
-
-        int right = k;
-        int left =1;
-
-        while (right< nums.length){
-            sum  += nums[right] ;
-            sum -= nums[left-1];
-            right++;
-            left++;
-            maxAvg = Math.max(sum/k,maxAvg);
+        //determine number of vowels in first window
+        for (int i = 0; i < k; i++) {
+            if(isVowel(sb.charAt(i)))
+                max++;
         }
 
-        return maxAvg;
 
 
+        int left = 0;
+        int right = k-1;
+
+        int curr= max;
+        while(right+1 < s.length()) {
+
+
+            if(isVowel(sb.charAt(left)))
+                curr--;
+
+            right ++;
+            left ++;
+
+
+            if(isVowel(sb.charAt(right)))
+                curr++;
+
+            max = Math.max(max, curr);
+        }
+
+
+        return max;
+    }
+
+    public boolean isVowel(char ch) {
+        if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+            return true;
+        else
+            return false;
     }
 }
