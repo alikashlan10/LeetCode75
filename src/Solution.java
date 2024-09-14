@@ -2,55 +2,22 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 
-//1456. Maximum Number of Vowels in a Substring of Given Length
-//medium
+//1732. Find the Highest Altitude
+//Easy
 //Time Complexity : O(N)
 //Space Complexity : O(1)
 
 
 class Solution {
-    public int maxVowels(String s, int k) {
-
-        StringBuilder sb = new StringBuilder(s);
-        int max = 0;
-        char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-
-        //determine number of vowels in first window
-        for (int i = 0; i < k; i++) {
-            if(isVowel(sb.charAt(i)))
-                max++;
+    public int largestAltitude(int[] gain) {
+        int max=0;
+        int sum=0;
+        for(int i=0;i<gain.length;i++)
+        {
+            sum += gain[i];
+            max = Math.max(max, sum);
         }
-
-
-
-        int left = 0;
-        int right = k-1;
-
-        int curr= max;
-        while(right+1 < s.length()) {
-
-
-            if(isVowel(sb.charAt(left)))
-                curr--;
-
-            right ++;
-            left ++;
-
-
-            if(isVowel(sb.charAt(right)))
-                curr++;
-
-            max = Math.max(max, curr);
-        }
-
 
         return max;
-    }
-
-    public boolean isVowel(char ch) {
-        if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-            return true;
-        else
-            return false;
     }
 }
